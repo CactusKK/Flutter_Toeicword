@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:toeic_words_practice/models/word_chapter_model.dart';
 import 'package:toeic_words_practice/services/find_json.dart';
 
-class InChapterScreen extends StatefulWidget {
+class PracticeScreen extends StatefulWidget {
   final String title;
 
-  const InChapterScreen({
+  const PracticeScreen({
     super.key,
     required this.title,
   });
 
   @override
-  State<InChapterScreen> createState() => _InChapterScreenState();
+  State<PracticeScreen> createState() => _PracticeScreenState();
 }
 
-class _InChapterScreenState extends State<InChapterScreen> {
+class _PracticeScreenState extends State<PracticeScreen> {
   late List<WordChapterModel> pairs;
   int index = 0;
   String wordText = 'empty_word';

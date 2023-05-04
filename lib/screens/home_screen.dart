@@ -3,10 +3,22 @@ import 'package:toeic_words_practice/models/chapter_model.dart';
 import 'package:toeic_words_practice/services/find_json.dart';
 import 'package:toeic_words_practice/widgets/chapter_widget.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final Future<List<ChapterModel>> chapters = FindJson.getChapter();
+  int selectedMode = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      selectedMode = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +54,25 @@ class HomeScreen extends StatelessWidget {
           );
         },
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.tips_and_updates_rounded),
+            label: 'Practice',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.gavel),
+            label: 'Challenge',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'Word List',
+          ),
+        ],
+        currentIndex: selectedMode, // 지정 인덱스로 이동
+        selectedItemColor: Colors.lightGreen,
+        onTap: _onItemTapped, // 선언했던 onItemTapped
+      ),
     );
   }
 
@@ -54,6 +85,7 @@ class HomeScreen extends StatelessWidget {
         var chapter = snapshot.data![index];
         return Chapter(
           title: chapter.title,
+          selectedMode: selectedMode,
         );
       },
       separatorBuilder: (context, index) => const SizedBox(

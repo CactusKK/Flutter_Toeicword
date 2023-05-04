@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:toeic_words_practice/screens/in_chapter_screen.dart';
+import 'package:toeic_words_practice/screens/challenge_screen.dart';
+import 'package:toeic_words_practice/screens/practice_screen.dart';
+import 'package:toeic_words_practice/screens/word_list_screen.dart';
 
 class Chapter extends StatelessWidget {
   final String title;
+  final int selectedMode;
 
   const Chapter({
     super.key,
     required this.title,
+    required this.selectedMode,
   });
 
   @override
@@ -16,9 +20,20 @@ class Chapter extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => InChapterScreen(
-              title: title,
-            ),
+            builder: (context) {
+              if (selectedMode == 0) {
+                return PracticeScreen(
+                  title: title,
+                );
+              } else if (selectedMode == 1) {
+                return ChallengeScreen(
+                  title: title,
+                );
+              }
+              return WordListScreen(
+                title: title,
+              );
+            },
           ),
         );
       },
