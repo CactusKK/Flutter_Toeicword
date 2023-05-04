@@ -21,6 +21,7 @@ samples, guidance on mobile development, and a full API reference.
 �
 
 Date : 2023-05-04
+
   I created the first version of toeic_words_practice.
   This meets the basic specifications of the application.
   - To be list Json files.
