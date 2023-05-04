@@ -27,3 +27,10 @@ Date : 2023-05-04
   - To be list Json files.
   - This has essential UI.
   - You can practice Toeic words.
+
+Date : 2023-05-04
+
+  Practice, Challenge, Word List 세가지 모드를 분리 및 추가하였습니다.
+  - Practice : 단어를 하나씩 확인하며 연습을 할 수 있습니다.
+  - Challenge : 3지선다 형 문제를 풀며 자신의 암기 정도를 테스트할 수 있습니다.
+  - Word List : 해당 Chapter에 포함된 단어들을 ListView로 볼 수 있습니다.
