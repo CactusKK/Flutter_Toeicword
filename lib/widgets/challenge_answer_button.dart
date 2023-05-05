@@ -32,7 +32,7 @@ class ChallengeAnswerButton extends StatelessWidget {
           child: Text(
             mean,
             style: const TextStyle(
-              fontSize: 25,
+              fontSize: 20,
               color: Colors.black87,
             ),
           ),

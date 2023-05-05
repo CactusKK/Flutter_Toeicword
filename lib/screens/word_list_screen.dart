@@ -36,27 +36,32 @@ class _WordListScreenState extends State<WordListScreen> {
             fontWeight: FontWeight.w400,
           ),
         ),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.green,
+        backgroundColor: const Color(0xffF7E1AE),
+        foregroundColor: const Color(0xff617A55),
         elevation: 2,
       ),
-      body: FutureBuilder(
-        future: pairsF,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Row(
-              children: [
-                const SizedBox(
-                  height: 50,
-                ),
-                Expanded(child: makeList(snapshot)),
-              ],
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Color(0xffFFF8D6),
+        ),
+        child: FutureBuilder(
+          future: pairsF,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Row(
+                children: [
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Expanded(child: makeList(snapshot)),
+                ],
+              );
+            }
+            return const Center(
+              child: CircularProgressIndicator(),
             );
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
+          },
+        ),
       ),
     );
   }

@@ -14,11 +14,11 @@ class WordListComponent extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.lightGreen.withOpacity(0.5),
+          color: const Color(0xffA4D0A4).withOpacity(0.5),
           width: 3,
         ),
         borderRadius: BorderRadius.circular(3),
-        color: Colors.lightGreen.withOpacity(0.8),
+        color: const Color(0xffA4D0A4).withOpacity(0.8),
       ),
       height: 56,
       child: Padding(
@@ -33,7 +33,7 @@ class WordListComponent extends StatelessWidget {
             Text(
               word,
               style: const TextStyle(
-                color: Colors.white,
+                color: Colors.black87,
                 fontWeight: FontWeight.w500,
                 fontSize: 18,
               ),
@@ -41,7 +41,7 @@ class WordListComponent extends StatelessWidget {
             Text(
               mean,
               style: const TextStyle(
-                color: Colors.white,
+                color: Colors.black87,
                 fontWeight: FontWeight.w500,
                 fontSize: 18,
               ),

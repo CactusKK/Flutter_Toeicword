@@ -19,18 +19,20 @@ class ChallengeScreen extends StatefulWidget {
 
 class _ChallengeScreenState extends State<ChallengeScreen> {
   late List<WordChapterModel> pairs;
-  final Color btnNomarlColor = Colors.lightGreen;
+  final Color btnNomarlColor = const Color(0xffA4D0A4);
   final Color btnWrongColor = Colors.red;
   final Color btnRightColor = Colors.blue;
   int index = 0;
+  int correct = 0;
+  int wrong = 0;
   bool clickedButton = false;
   String wordText = 'empty_word';
   String rightMean = 'empty_mean';
   List<String> btnMean = ['Button1', 'Button2', 'Button3'];
   List<Color> btnColor = [
-    Colors.lightGreen,
-    Colors.lightGreen,
-    Colors.lightGreen
+    const Color(0xffA4D0A4),
+    const Color(0xffA4D0A4),
+    const Color(0xffA4D0A4)
   ];
 
   @override
@@ -51,72 +53,121 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
             fontWeight: FontWeight.w400,
           ),
         ),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.green,
+        backgroundColor: const Color(0xffF7E1AE),
+        foregroundColor: const Color(0xff617A55),
         elevation: 2,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 100,
-              width: 300,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(10),
-                ),
-                border: Border.all(
-                  color: Colors.purple,
-                  width: 2,
-                ),
-                color: Colors.purple.withOpacity(0.3),
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Color(0xffFFF8D6),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const SizedBox(
+                height: 10,
               ),
-              child: Center(
-                child: Text(
-                  wordText,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
+              Column(
+                children: [
+                  Container(
+                    height: 100,
+                    width: 300,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                      border: Border.all(
+                        color: const Color(0xff617A55),
+                        width: 2,
+                      ),
+                      color: const Color(0xff617A55).withOpacity(0.3),
+                    ),
+                    child: Center(
+                      child: Text(
+                        wordText,
+                        style: const TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
                   ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Column(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          onTapButton(btnMean[0], 0);
+                        },
+                        child: ChallengeAnswerButton(
+                          mean: btnMean[0],
+                          buttonColor: btnColor[0],
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          onTapButton(btnMean[1], 1);
+                        },
+                        child: ChallengeAnswerButton(
+                          mean: btnMean[1],
+                          buttonColor: btnColor[1],
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          onTapButton(btnMean[2], 2);
+                        },
+                        child: ChallengeAnswerButton(
+                          mean: btnMean[2],
+                          buttonColor: btnColor[2],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      blurRadius: 2.0,
+                      spreadRadius: 0.0,
+                      offset: const Offset(0, -2),
+                    )
+                  ],
+                  color: const Color(0xffF7E1AE),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 25,
+                  ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "total : $index",
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Text(
+                          "O / X : $correct / $wrong",
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ]),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            Column(
-              children: [
-                TextButton(
-                  onPressed: () {
-                    onTapButton(btnMean[0], 0);
-                  },
-                  child: ChallengeAnswerButton(
-                    mean: btnMean[0],
-                    buttonColor: btnColor[0],
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    onTapButton(btnMean[1], 1);
-                  },
-                  child: ChallengeAnswerButton(
-                    mean: btnMean[1],
-                    buttonColor: btnColor[1],
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    onTapButton(btnMean[2], 2);
-                  },
-                  child: ChallengeAnswerButton(
-                    mean: btnMean[2],
-                    buttonColor: btnColor[2],
-                  ),
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -126,10 +177,13 @@ class _ChallengeScreenState extends State<ChallengeScreen> {
     setState(() {
       if (!clickedButton) {
         clickedButton = true;
+        index++;
         if (answerMean == rightMean) {
           btnColor[buttonNo] = btnRightColor;
+          correct++;
         } else {
           btnColor[buttonNo] = btnWrongColor;
+          wrong++;
         }
         Future.delayed(const Duration(milliseconds: 1500), () {
           setState(() {

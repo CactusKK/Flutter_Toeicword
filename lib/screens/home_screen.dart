@@ -32,29 +32,40 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.w400,
           ),
         ),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.green,
+        backgroundColor: const Color(0xffF7E1AE),
+        foregroundColor: const Color(0xff617A55),
         elevation: 2,
       ),
       body: FutureBuilder(
         future: chapters,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return Row(
-              children: [
-                const SizedBox(
-                  height: 50,
-                ),
-                Expanded(child: makeList(snapshot)),
-              ],
+            return Container(
+              decoration: const BoxDecoration(
+                color: Color(0xffFFF8D6),
+              ),
+              child: Row(
+                children: [
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Expanded(child: makeList(snapshot)),
+                ],
+              ),
             );
           }
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Container(
+            decoration: const BoxDecoration(
+              color: Color(0xffFFF8D6),
+            ),
+            child: const Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: const Color(0xffF7E1AE),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.tips_and_updates_rounded),
@@ -70,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         currentIndex: selectedMode, // 지정 인덱스로 이동
-        selectedItemColor: Colors.lightGreen,
+        selectedItemColor: const Color(0xffA4D0A4),
         onTap: _onItemTapped, // 선언했던 onItemTapped
       ),
     );
@@ -89,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
         );
       },
       separatorBuilder: (context, index) => const SizedBox(
-        height: 10,
+        height: 1,
       ),
     );
   }

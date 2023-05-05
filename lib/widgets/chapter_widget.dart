@@ -46,8 +46,12 @@ class Chapter extends StatelessWidget {
               top: 20,
             ),
             decoration: BoxDecoration(
+              border: Border.all(
+                color: const Color(0xff617A55),
+                width: 2,
+              ),
               borderRadius: BorderRadius.circular(10),
-              color: Colors.green.shade300,
+              color: const Color(0xffA4D0A4),
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(
@@ -64,7 +68,7 @@ class Chapter extends StatelessWidget {
                       style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
-                        fontSize: 24,
+                        fontSize: 22,
                       ),
                     ),
                     const Icon(
