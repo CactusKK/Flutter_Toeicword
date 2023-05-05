@@ -34,3 +34,7 @@ Date : 2023-05-04
   - Practice : 단어를 하나씩 확인하며 연습을 할 수 있습니다.
   - Challenge : 3지선다 형 문제를 풀며 자신의 암기 정도를 테스트할 수 있습니다.
   - Word List : 해당 Chapter에 포함된 단어들을 ListView로 볼 수 있습니다.
+  
+Date : 2023-05-05
+  
+  Practice Mode에 연습중인 단어를 Chat GPT에게 물어보는 기능을 추가하였습니다.
